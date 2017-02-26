@@ -7,6 +7,9 @@ import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
+/**
+ * Main application loop
+ */
 fun main(args: Array<String>) {
     mainLoop@while (true) {
         print("> ")
@@ -28,13 +31,6 @@ fun main(args: Array<String>) {
                 continue@mainLoop
             }
         }
-        if (lastStream == null || lastStream == System.`in`) {
-            continue
-        }
-        val reader = BufferedReader(InputStreamReader(lastStream))
-        while (true) {
-            val line = reader.readLine() ?: break
-            println(line)
-        }
+        Shell.writeLines(lastStream)
     }
 }

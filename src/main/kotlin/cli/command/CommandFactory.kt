@@ -1,5 +1,8 @@
 package cli.command
 
+/**
+ * Creates command class by list of tokens
+ */
 class CommandFactory {
     companion object {
         private val CAT_COMMAND = "cat"

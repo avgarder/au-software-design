@@ -7,6 +7,11 @@ import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
 
+/**
+ * Abstract command.
+ * @constructor takes arguments of the command
+ * @see Command.run for running the command.
+ */
 abstract class Command(protected val args: List<String>) {
 
     /**
@@ -15,11 +20,14 @@ abstract class Command(protected val args: List<String>) {
      */
     abstract fun run(env: Environment, input: InputStream?): InputStream?
 
+    /**
+     * @return usage of the command if overrided
+     */
     open fun getUsage(): String {
         throw UnsupportedOperationException()
     }
 
-    open fun getInput(file: String?, input: InputStream?): InputStream? {
+    open protected fun getInput(file: String?, input: InputStream?): InputStream? {
         if (file == null && input == null) {
             throw InvalidUsageException(this)
         }

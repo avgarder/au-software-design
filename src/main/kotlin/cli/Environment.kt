@@ -5,7 +5,6 @@ import java.util.*
 /**
  * Contains set variables
  */
-
 class Environment {
     private val data = HashMap<String, String>()
 

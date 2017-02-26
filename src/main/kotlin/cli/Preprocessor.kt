@@ -1,11 +1,14 @@
 package cli
 
+/**
+ * Contains methods that preprocess script
+ */
 class Preprocessor {
     companion object {
         private val VAR_SYMBOL = '$'
 
         /**
-         * replaces variables with its' values
+         * replaces enrironment variables with its' values
          */
         fun preprocess(env: Environment, script: String): String {
             val builder = StringBuilder()
