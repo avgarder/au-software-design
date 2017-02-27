@@ -2,7 +2,7 @@ group 'ru.ifmo.rain.garder'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.5'
+    ext.kotlin_version = '1.0.6'
 
     repositories {
         mavenCentral()
@@ -16,7 +16,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-mainClassName = "cli.MainKt"
+mainClassName = "ru.ifmo.rain.garder.cli.MainKt"
 
 sourceCompatibility = 1.8
 
