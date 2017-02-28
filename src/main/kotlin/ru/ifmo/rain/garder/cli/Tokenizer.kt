@@ -2,6 +2,9 @@ package ru.ifmo.rain.garder.cli
 
 import java.util.*
 
+/**
+ * Contains methods that tokenizes script
+ */
 class Tokenizer {
     companion object {
         /**
