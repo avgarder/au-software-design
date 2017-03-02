@@ -30,19 +30,20 @@ class GrepCommand(args: List<String>) : Command(args) {
                 if (options.nonOptionArguments().size < 2) null else options.nonOptionArguments()[1].toString(),
                 input)
 
-        val reader = BufferedReader(InputStreamReader(input))
-        var next = 0
         val result = ArrayList<String>()
-        while (true) {
-            val s = reader.readLine() ?: break
-            if (pattern.matcher(s).matches()) {
-                result.add(s)
-                if (options.has("A")) {
-                    next = options.valueOf("A").toString().toInt()
+        var next = 0
+        BufferedReader(InputStreamReader(input)).use { reader ->
+            while (true) {
+                val s = reader.readLine() ?: break
+                if (pattern.matcher(s).matches()) {
+                    result.add(s)
+                    if (options.has("A")) {
+                        next = options.valueOf("A").toString().toInt()
+                    }
+                } else if (next > 0) {
+                    result.add(s)
+                    next--
                 }
-            } else if (next > 0) {
-                result.add(s)
-                next--
             }
         }
         return result.joinToString("\n").byteInputStream()
@@ -51,6 +52,13 @@ class GrepCommand(args: List<String>) : Command(args) {
     private fun parseOptions() : OptionSet {
         val parser = OptionParser("iwA:")
         val options = parser.parse(*args.toTypedArray())
+        if (options.has("A")) {
+            try {
+                options.valueOf("A").toString().toInt()
+            } catch (e: NumberFormatException) {
+                throw InvalidUsageException(this)
+            }
+        }
         return options
     }
 
