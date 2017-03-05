@@ -10,6 +10,7 @@ class CommandFactory {
         private val ECHO_COMMAND = "echo"
         private val PWD_COMMAND = "pwd"
         private val WC_COMMAND = "wc"
+        private val GREP_COMMAND = "grep"
 
         /**
          * creates command by tokens
@@ -25,6 +26,7 @@ class CommandFactory {
                 ECHO_COMMAND -> return EchoCommand(tokens.subList(1, tokens.size))
                 PWD_COMMAND -> return PwdCommand(tokens.subList(1, tokens.size))
                 WC_COMMAND -> return WcCommand(tokens.subList(1, tokens.size))
+                GREP_COMMAND -> return GrepCommand(tokens.subList(1, tokens.size))
                 else -> return CustomCommand(tokens)
             }
         }
