@@ -17,8 +17,8 @@ class LsCommandTests {
         val cmd = LsCommand(listOf("testData"))
         val result = cmd.run(Environment(), null)
         Assert.assertNotNull(result)
-        val res = setOf(BufferedReader(InputStreamReader(result)).readLine().split(' '))
-        val exp = setOf("file.txt dir".split(' '))
+        val res = BufferedReader(InputStreamReader(result)).readLine().split(' ').toSet()
+        val exp = "file.txt dir".split(' ').toSet()
         Assert.assertEquals(exp, res)
     }
 }
