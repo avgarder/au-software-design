@@ -15,7 +15,6 @@ class LsCommandTests {
     @Test
     fun testSimpleLs() {
         val cmd = LsCommand(listOf("testData"))
-        val pwd = PwdCommand(emptyList())
         val result = cmd.run(Environment(), null)
         Assert.assertNotNull(result)
         val res = setOf(BufferedReader(InputStreamReader(result)).readLine().split(' '))
