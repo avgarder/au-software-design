@@ -18,6 +18,8 @@ class LsCommandTests {
         val pwd = PwdCommand(emptyList())
         val result = cmd.run(Environment(), null)
         Assert.assertNotNull(result)
-        Assert.assertEquals("file.txt dir", BufferedReader(InputStreamReader(result)).readLine())
+        val res = setOf(BufferedReader(InputStreamReader(result)).readLine().split(' '))
+        val exp = setOf("file.txt dir".split(' '))
+        Assert.assertEquals(exp, res)
     }
 }
