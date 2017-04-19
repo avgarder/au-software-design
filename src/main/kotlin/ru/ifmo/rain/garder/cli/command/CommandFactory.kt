@@ -10,6 +10,8 @@ class CommandFactory {
         private val ECHO_COMMAND = "echo"
         private val PWD_COMMAND = "pwd"
         private val WC_COMMAND = "wc"
+        private val LS_COMMAND = "ls"
+        private val CD_COMMAND = "cd"
 
         /**
          * creates command by tokens
@@ -25,6 +27,8 @@ class CommandFactory {
                 ECHO_COMMAND -> return EchoCommand(tokens.subList(1, tokens.size))
                 PWD_COMMAND -> return PwdCommand(tokens.subList(1, tokens.size))
                 WC_COMMAND -> return WcCommand(tokens.subList(1, tokens.size))
+                LS_COMMAND -> return LsCommand(tokens.subList(1, tokens.size))
+                CD_COMMAND -> return CdCommand(tokens.subList(1, tokens.size))
                 else -> return CustomCommand(tokens)
             }
         }
