@@ -3,6 +3,7 @@ package ru.ifmo.rain.garder.cli.command
 import ru.ifmo.rain.garder.cli.Environment
 import ru.ifmo.rain.garder.cli.exception.InvalidUsageException
 import ru.ifmo.rain.garder.cli.exception.RunException
+import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
@@ -33,7 +34,7 @@ abstract class Command(protected val args: List<String>) {
         }
         if (file != null) {
             try {
-                return FileInputStream(file)
+                return FileInputStream(File(file).absolutePath)
             } catch (e: FileNotFoundException) {
                 throw RunException("file not found: $file")
             }
