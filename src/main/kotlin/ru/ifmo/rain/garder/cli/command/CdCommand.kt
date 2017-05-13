@@ -11,24 +11,20 @@ import java.nio.file.Paths
 /**
  * Implementation of cd command
  */
-
-
 class CdCommand(args: List<String>) : Command(args) {
 
     override fun run(env: Environment, input: InputStream?): InputStream? {
         if (args.size > 1) {
             throw InvalidUsageException(this)
         }
-        if (args.isEmpty())
-        {
+        if (args.isEmpty()) {
             return "".byteInputStream()
         }
         val path = args[0]
         val curDir = File("").absolutePath
         val dest = Paths.get(curDir, path).toAbsolutePath().toFile()
 
-        if (!dest.isDirectory)
-        {
+        if (!dest.isDirectory) {
             throw RunException("$path is not directory")
         }
 

@@ -23,8 +23,7 @@ class LsCommand(args: List<String>) : Command(args) {
             val curDir = File("").absolutePath
             val dest = Paths.get(curDir, path).toAbsolutePath().toFile()
 
-            if (!dest.isDirectory)
-            {
+            if (!dest.isDirectory) {
                 throw RunException("$path is not directory")
             }
 

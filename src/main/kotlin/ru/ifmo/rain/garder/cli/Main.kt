@@ -11,7 +11,7 @@ import java.io.InputStreamReader
  * Main application loop
  */
 fun main(args: Array<String>) {
-    mainLoop@while (true) {
+    mainLoop@ while (true) {
         print("> ")
         System.out.flush()
         val s = Shell.readString() ?: break

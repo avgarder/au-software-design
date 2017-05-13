@@ -7,24 +7,28 @@ import ru.ifmo.rain.garder.cli.InputStreamUtils
 import java.io.File
 import java.nio.file.Paths
 
-/**
- * Created by bronti on 19.04.17.
- */
-
 class CdCommandTest {
     @Test
-    fun testSimpleLs() {
-        var cmd = CdCommand(listOf("testData/"))
+    fun testSimpleCd() {
+        var cmd = CdCommand(listOf("testData" + File.separator))
 
         val pwd = File("").absolutePath
         var result = cmd.run(Environment(), null)
 
         Assert.assertNotNull(result)
         Assert.assertTrue(InputStreamUtils.equals(result!!, "".byteInputStream()))
-        Assert.assertEquals(pwd + "/testData", File("").absolutePath)
+        Assert.assertEquals(pwd + File.separator + "testData", File("").absolutePath)
 
-        cmd = CdCommand(listOf("../"))
-        result = cmd.run(Environment(), null)
+        CdCommand(listOf(".." + File.separator)).run(Environment(), null)
+    }
+
+    @Test
+    fun testReturnCd() {
+        val pwd = File("").absolutePath
+        CdCommand(listOf("testData" + File.separator)).run(Environment(), null)
+
+        val cmd = CdCommand(listOf(".." + File.separator))
+        val result = cmd.run(Environment(), null)
 
         Assert.assertNotNull(result)
         Assert.assertTrue(InputStreamUtils.equals(result!!, "".byteInputStream()))
